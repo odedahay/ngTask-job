@@ -4,7 +4,7 @@ import { ActionReducer, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
-import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideAuth, getAuth, Auth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { localStorageSync } from 'ngrx-store-localstorage';
@@ -12,6 +12,7 @@ import { authReducer } from './store/auth/auth.reducer';
 
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
+import { AuthEffects } from './store/auth/auth.effects';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({ 
@@ -31,7 +32,7 @@ export const appConfig: ApplicationConfig = {
       router: routerReducer,
       auth: authReducer
     }, { metaReducers }),
-    provideEffects([]),
+    provideEffects([AuthEffects]),
     provideStoreDevtools(),
     provideRouterStore(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

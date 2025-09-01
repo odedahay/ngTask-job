@@ -1,6 +1,6 @@
 export interface AuthState {
     uid: string | null;
     email: string | null;
-    isloading: boolean;
+    isLoading: boolean;
     error: string | null;
 }
