@@ -13,6 +13,8 @@ import { authReducer } from './store/auth/auth.reducer';
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import { AuthEffects } from './store/auth/auth.effects';
+import { tasksReducer } from './store/tasks/tasks.reducer';
+import { TasksEffects } from './store/tasks/tasks.effects';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({ 
@@ -30,9 +32,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({ 
       router: routerReducer,
-      auth: authReducer
+      auth: authReducer,
+      tasks : tasksReducer
     }, { metaReducers }),
-    provideEffects([AuthEffects]),
+    provideEffects([AuthEffects, TasksEffects]),
     provideStoreDevtools(),
     provideRouterStore(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

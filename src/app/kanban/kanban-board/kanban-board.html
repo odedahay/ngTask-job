@@ -1,0 +1,42 @@
+<div class="board-container" cdkDropListGroup>
+    <!-- To Do Column -->
+    <div class="column">
+        <h2 class="column-title">To Do</h2>
+        <div id="todo-list" class="task-list" cdkDropList [cdkDropListData]="(todoTasks$ | async) || []">
+            @for (task of (todoTasks$ | async); track task.id) {
+            <app-kanban-task-card [task]="task" cdkDrag>
+            </app-kanban-task-card>
+            }
+        </div>
+    </div>
+
+    <!-- In Progress Column -->
+     <div class="column">
+        <h2 class="column-title">In Progress</h2>
+        <div
+        id="inprogress-list"
+        class="task-list"
+        cdkDropList
+        [cdkDropListData]="(inProgressTasks$ | async) || []"
+        >
+        @for (task of (inProgressTasks$ | async); track task.id) {
+            <app-kanban-task-card [task]="task" cdkDrag></app-kanban-task-card>
+        }
+        </div>
+     </div>
+
+     <!-- Done Column -->
+    <div class="column">
+        <h2 class="column-title">Done</h2>
+        <div
+            id="done-list"
+            class="task-list"
+            cdkDropList
+            [cdkDropListData]="(doneTasks$ | async) || []"
+        >
+        @for (task of (doneTasks$ | async); track task.id) {
+            <app-kanban-task-card [task]="task" cdkDrag></app-kanban-task-card>
+        }
+    </div>
+    </div>
+</div>
