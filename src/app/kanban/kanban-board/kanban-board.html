@@ -11,32 +11,22 @@
     </div>
 
     <!-- In Progress Column -->
-     <div class="column">
+    <div class="column">
         <h2 class="column-title">In Progress</h2>
-        <div
-        id="inprogress-list"
-        class="task-list"
-        cdkDropList
-        [cdkDropListData]="(inProgressTasks$ | async) || []"
-        >
-        @for (task of (inProgressTasks$ | async); track task.id) {
+        <div id="inprogress-list" class="task-list" cdkDropList [cdkDropListData]="(inProgressTasks$ | async) || []">
+            @for (task of (inProgressTasks$ | async); track task.id) {
             <app-kanban-task-card [task]="task" cdkDrag></app-kanban-task-card>
-        }
+            }
         </div>
-     </div>
+    </div>
 
-     <!-- Done Column -->
+    <!-- Done Column -->
     <div class="column">
         <h2 class="column-title">Done</h2>
-        <div
-            id="done-list"
-            class="task-list"
-            cdkDropList
-            [cdkDropListData]="(doneTasks$ | async) || []"
-        >
-        @for (task of (doneTasks$ | async); track task.id) {
+        <div id="done-list" class="task-list" cdkDropList [cdkDropListData]="(doneTasks$ | async) || []">
+            @for (task of (doneTasks$ | async); track task.id) {
             <app-kanban-task-card [task]="task" cdkDrag></app-kanban-task-card>
-        }
-    </div>
+            }
+        </div>
     </div>
 </div>
